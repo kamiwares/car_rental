@@ -21,33 +21,35 @@
     </nav>
     <div id="banner" style="height: 100vh">
         <div id="container">
-            <h1>Dodaj samochód</h1>
-            <div class="dodaj">
-            <form method="post" action="add.php">
-                Marka: <input type="text" name="marka" id="marka" required value="adnuib">
-                Model: <input type="text" name="model" id="model" required>
-                Silnik: <input type="text" name="engine" id="engine" required>
-                Opis: <input type="text" name="desc" id="desc" required>
-                Rok produkcji: <input type="text" name="year" id="year" required>
-                URL zdjęcia/ścieżka: <input type="text" name="pic" id="pic" required>
-                <input type="submit" name="submit">
-            </form>
-            <div class="car">
-                <div class="car-image" id="pic-view"></div>
-                <div class="desc">
-                    <h1 id="marka-view">Marka</h1>
-                    <h2 id="model-view">Model</h2>
-                    <h3 id="year-view">Rok produkcji</h3>
-                    <h3 id="desc-view">Opis</h3>
-                </div>
-            </div>
             <?php
-                if(isset($_SESSION['added'])){
-                    echo $_SESSION['added'];
+                session_start();
+                if(isset($_SESSION['login'])&&$_SESSION['login']==true){
+                    echo '<h1>Dodaj samochód</h1>';
+                    echo '<div class="dodaj">';
+                    echo '<form method="post" action="add.php">';
+                    echo 'Marka: <input type="text" name="marka" id="marka" required>';
+                    echo 'Model: <input type="text" name="model" id="model" required>';
+                    echo 'Silnik: <input type="text" name="engine" id="engine" required>';
+                    echo 'Opis: <input type="text" name="desc" id="desc" required>';
+                    echo 'Rok produkcji: <input type="text" name="year" id="year" required>';
+                    echo 'URL zdjęcia/ścieżka: <input type="text" name="pic" id="pic" required>';
+                    echo '<input type="submit" name="submit">';
+                    echo '</form>';
+                    echo '<div class="car">';
+                    echo '<div class="car-image" id="pic-view"></div>';
+                    echo '<div class="desc">';
+                    echo '<h1 id="marka-view">Marka</h1>';
+                    echo '<h2 id="model-view">Model</h2>';
+                    echo '<h3 id="year-view">Rok produkcji</h3>';
+                    echo '<h3 id="desc-view">Opis</h3>';
+                    echo '</div>';
+                    echo '</div>';
                 }
-            ?>
+                else{
+                    header('Location: index.php');
+                }
+        ?>
         </div>
-
         </div>
     </div>
 </body>
